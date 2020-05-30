@@ -36,7 +36,11 @@
       type: 'GET',
       url: serverUrl,
       success: (data) => {
-        SwimTeam.move(data);
+        if (data === ''){
+          return;
+        } else{
+          SwimTeam.move(data);
+        }
       }
     });
   };
