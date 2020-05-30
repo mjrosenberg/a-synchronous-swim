@@ -24,25 +24,19 @@
       contentType: false,
       processData: false,
       success: () => {
+
         // reload the page
         window.location = window.location.href;
       }
     });
   };
 
-  const ajaxGetRequest = (file) => {
-    var formData = new FormData();
-    formData.append('file', file);
+  const ajaxGetRequest = () => {
     $.ajax({
       type: 'GET',
-      data: formData,
       url: serverUrl,
-      cache: false,
-      contentType: false,
-      processData: false,
-      success: () => {
-        // reload the page
-        window.location = window.location.href;
+      success: (data) => {
+        SwimTeam.move(data);
       }
     });
   };
@@ -61,8 +55,10 @@
       console.log('Not a jpg file!');
       return;
     }
-
     ajaxFileUplaod(file);
+
   });
+
+  setInterval(ajaxGetRequest, 1000);
 
 })();

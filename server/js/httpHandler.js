@@ -16,7 +16,10 @@ module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
   res.writeHead(200, headers);
   if (req.method === 'GET') {
-    res.write('up');
+    const validMessages = ['left', 'right', 'up', 'down'];
+    let randomIndex = Math.floor(Math.random()*validMessages.length);
+    res.write(validMessages[randomIndex]);
+    //res.write('up');
   }
   res.end();
   next(); // invoke next() at the end of a request to help with testing!
